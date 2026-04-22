@@ -1,0 +1,29 @@
+[
+  {
+    "surah_number": 1,
+    "surah_name": "الفاتحة",
+    "ayah_number": 1,
+    "ayah_text": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    "ayah_text_simple": "بسم الله الرحمن الرحيم",
+    "qiraah": "asim",
+    "riwayah": "hafs"
+  },
+  {
+    "surah_number": 1,
+    "surah_name": "الفاتحة",
+    "ayah_number": 2,
+    "ayah_text": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+    "ayah_text_simple": "الحمد لله رب العالمين",
+    "qiraah": "asim",
+    "riwayah": "hafs"
+  },
+  {
+    "surah_number": 1,
+    "surah_name": "الفاتحة",
+    "ayah_number": 3,
+    "ayah_text": "الرَّحْمَٰنِ الرَّحِيمِ",
+    "ayah_text_simple": "الرحمن الرحيم",
+    "qiraah": "asim",
+    "riwayah": "hafs"
+  }
+]
