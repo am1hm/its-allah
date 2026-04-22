@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #f7f7f1;
+  --text: #1f2937;
+  --card: #ffffff;
+  --accent: #365c4f;
+  --quran: #f3efe0;
+  --hadith: #eef6ff;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body[dir="rtl"] {
+  font-family: Tajawal, "Noto Naskh Arabic", sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.quran-card {
+  background: var(--quran);
+  border-right: 4px solid var(--accent);
+}
+
+.hadith-card {
+  background: var(--hadith);
+  border-right: 4px solid #325f9e;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  width: 100%;
+  margin-top: 0.3rem;
+  margin-bottom: 0.6rem;
+  padding: 0.5rem;
+}

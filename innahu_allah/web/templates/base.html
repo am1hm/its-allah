@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ 'ar' if lang == 'ar' else 'en' }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Innahu Allah</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+  <div class="container">
+    <div class="topbar card">
+      <a href="/">{{ "إنه الله" if lang == 'ar' else "Innahu Allah" }}</a>
+      <div>
+        <a href="/?lang=ar">AR</a> | <a href="/?lang=en">EN</a> |
+        <a href="/mushaf?lang={{ lang }}">{{ "ترتيب المصحف" if lang == 'ar' else "Mushaf Order" }}</a> |
+        <a href="/admin">Admin</a>
+      </div>
+    </div>
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

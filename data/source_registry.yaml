@@ -1,0 +1,78 @@
+version: 1
+project: innahu_allah
+governance:
+  language_support:
+    arabic_font_primary: Tajawal
+    english_support: true
+  publication_rule: approved_only
+  methodology: ahl_al_sunnah_wal_jamaah
+  doctrinal_reference:
+    - title: "Al-Qawa'id al-Muthla"
+      author: "Muhammad ibn Salih al-Uthaymin"
+source_priority:
+  quran_text:
+    - id: kfgqpc
+      label: King Fahd Complex TechQuran
+      trust_level: primary
+      format: [json, csv, sql, xml, xlsx]
+    - id: tanzil
+      label: Tanzil
+      trust_level: secondary_cross_check
+      format: [txt, xml, sql]
+    - id: kfgqpc_unicode
+      label: quran-data-kfgqpc (GitHub mirror)
+      trust_level: display_support
+      format: [unicode, font_assets]
+  allah_names:
+    - id: kabdeveloper_99
+      label: 99-Names-Of-Allah JSON
+      trust_level: seed_dataset
+    - id: ibn_uthaymin_verified_list
+      label: Scholarly validated list for final approval
+      trust_level: final_reconciliation
+  tafsir:
+    - id: quran_foundation_api
+      label: Quran Foundation API
+      trust_level: primary_api
+    - id: alquran_cloud
+      label: AlQuran Cloud API
+      trust_level: secondary_api
+    - id: tafsir_api_spa5k
+      label: spa5k/tafsir_api
+      trust_level: fallback_api
+    - id: shamela
+      label: Al-Maktaba Al-Shamela
+      trust_level: manual_primary
+    - id: altafsir
+      label: altafsir.com
+      trust_level: manual_cross_check
+  hadith:
+    - id: sunnah_api
+      label: sunnah.com developers API
+      trust_level: primary_api
+    - id: dorar
+      label: dorar.net hadith grading
+      trust_level: grading_reference
+    - id: open_hadith_datasets
+      label: curated dataset fallback
+      trust_level: fallback_dataset
+  scholarly_commentary:
+    - id: shamela
+      label: Al-Maktaba Al-Shamela
+      trust_level: primary_library
+    - id: openiti
+      label: OpenITI
+      trust_level: secondary_library
+    - id: waqfeya
+      label: Waqfeya scanned PDFs
+      trust_level: print_validation
+policies:
+  ingestion:
+    default_verification_status: pending
+    require_source_metadata: true
+    require_ingestion_timestamp: true
+  review:
+    states: [pending, approved, rejected, approved_with_edit]
+  weak_hadith:
+    default_action: include_with_warning
+    must_be_reviewed: true

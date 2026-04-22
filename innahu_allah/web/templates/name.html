@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>{{ name.name_arabic }} — {{ name.name_transliteration }}</h1>
+  <p>{{ name.meaning }}</p>
+</div>
+
+<div class="card">
+  <h2>{{ "الآيات" if lang == 'ar' else "Verses" }}</h2>
+  {% for v in verses %}
+    <div class="quran-card card">
+      <div><strong>{{ v.surah_name }} {{ v.ayah_number }}</strong> ({{ v.context_note }})</div>
+      <div>{{ v.ayah_text }}</div>
+      <audio controls preload="none">
+        <source src="#" type="audio/mpeg">
+      </audio>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="card">
+  <h2>{{ "التفسير المعتمد" if lang == 'ar' else "Approved Tafsir" }}</h2>
+  {% if tafsir %}
+    {% for t in tafsir %}
+      <div class="card">
+        <strong>{{ t.scholar_name }}</strong>
+        <p>{{ t.tafsir_text }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>{{ "لا يوجد تفسير معتمد بعد." if lang == 'ar' else "No approved tafsir yet." }}</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>{{ "الأحاديث المعتمدة" if lang == 'ar' else "Approved Hadith" }}</h2>
+  {% if hadith %}
+    {% for h in hadith %}
+      <div class="hadith-card card">
+        <div><strong>{{ h.collection }} {{ h.hadith_number }}</strong></div>
+        <p>{{ h.arabic_text }}</p>
+        <small>Grade: {{ h.grade }} | Scholar: {{ h.grading_scholar }}</small>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>{{ "لا يوجد حديث معتمد بعد." if lang == 'ar' else "No approved hadith yet." }}</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>{{ "أقوال العلماء" if lang == 'ar' else "Scholarly Commentary" }}</h2>
+  {% if commentary %}
+    {% for c in commentary %}
+      <div class="card"><strong>{{ c.scholar_name }}</strong> — {{ c.commentary_text }}</div>
+    {% endfor %}
+  {% else %}
+    <p>{{ "لا يوجد تعليق معتمد بعد." if lang == 'ar' else "No approved commentary yet." }}</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>{{ "تعليق الوالد" if lang == 'ar' else "Father Narrative" }}</h2>
+  {% if narratives %}
+    {% for n in narratives %}
+      <div class="card">{{ n.narrative_text }}</div>
+    {% endfor %}
+  {% else %}
+    <p>{{ "لا يوجد تعليق نهائي بعد." if lang == 'ar' else "No final narrative yet." }}</p>
+  {% endif %}
+</div>
+{% endblock %}

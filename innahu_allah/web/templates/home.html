@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>{{ title_ar if lang == 'ar' else title_en }}</h1>
+  <p>
+    {% if lang == 'ar' %}
+      منصة خاصة لمراجعة محتوى أسماء الله الحسنى قبل النشر العام.
+    {% else %}
+      Private scholarly beta for Allah's Names content before public release.
+    {% endif %}
+  </p>
+</div>
+
+<div class="card">
+  <h2>{{ "أسماء الله الحسنى" if lang == 'ar' else "Names of Allah" }}</h2>
+  {% for n in names %}
+    <div><a href="/names/{{ n.id }}?lang={{ lang }}">{{ n.name_arabic }} ({{ n.name_transliteration }})</a></div>
+  {% endfor %}
+</div>
+
+<div class="card">
+  <h2>{{ "سورة الفاتحة" if lang == 'ar' else "Surah Al-Fatihah" }}</h2>
+  {% for v in verses %}
+    <div class="quran-card card">
+      <div><strong>{{ v.surah_name }} {{ v.ayah_number }}</strong></div>
+      <div>{{ v.ayah_text }}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>{{ "التصفح بترتيب المصحف" if lang == 'ar' else "Browse by Mushaf Order" }}</h1>
+  {% for v in verses %}
+    <div class="quran-card card">
+      <div><strong>{{ v.surah_name }} {{ v.ayah_number }}</strong></div>
+      <div>{{ v.ayah_text }}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
