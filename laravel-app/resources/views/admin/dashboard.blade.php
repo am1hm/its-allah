@@ -2,56 +2,61 @@
 
 @section('content')
     <div class="card">
-        <h1>Reviewer Dashboard</h1>
-        <p>Pending Tafsir: {{ $stats['pending_tafsir'] }}</p>
-        <p>Pending Hadith: {{ $stats['pending_hadith'] }}</p>
-        <p>Pending Commentary: {{ $stats['pending_commentary'] }}</p>
-        <p>Reviewed Names: {{ $stats['reviewed_names'] }} / {{ $stats['total_names'] }}</p>
+        <h1>لوحة المراجع</h1>
+        <p>تفاسير بانتظار المراجعة: <strong>{{ $stats['pending_tafsir'] }}</strong></p>
+        <p>أحاديث بانتظار المراجعة: <strong>{{ $stats['pending_hadith'] }}</strong></p>
+        <p>أقوال علماء بانتظار المراجعة: <strong>{{ $stats['pending_commentary'] }}</strong></p>
+        <p>الأسماء المعتمدة: <strong>{{ $stats['reviewed_names'] }} / {{ $stats['total_names'] }}</strong></p>
     </div>
 
     <div class="card">
-        <h2>Review Queue</h2>
+        <h2>قائمة المراجعة</h2>
         @forelse($queue as $item)
             <form class="card" method="POST" action="{{ route('admin.review') }}">
                 @csrf
                 <input type="hidden" name="content_type" value="{{ $item->content_type }}">
                 <input type="hidden" name="content_id" value="{{ $item->id }}">
-                <strong>{{ $item->content_type }} #{{ $item->id }} — {{ $item->title }}</strong>
-                <p>{{ $item->text }}</p>
-                <label>Edited Text (optional for approve_with_edit)</label>
-                <textarea name="edited_text"></textarea>
-                <label>Notes</label>
-                <textarea name="notes"></textarea>
-                <label>Action</label>
+                <strong>
+                    @if($item->content_type === 'tafsir_entries') تفسير
+                    @elseif($item->content_type === 'hadiths') حديث
+                    @else قول عالم
+                    @endif
+                    #{{ $item->id }} — {{ $item->title }}
+                </strong>
+                <p style="direction:rtl; line-height:1.9; font-size:1.05rem;">{{ $item->text }}</p>
+                <label>تعديل النص (اختياري عند الاعتماد مع تعديل)</label>
+                <textarea name="edited_text" rows="3"></textarea>
+                <label>ملاحظات</label>
+                <textarea name="notes" rows="2"></textarea>
+                <label>القرار</label>
                 <select name="action">
-                    <option value="approve">Approve</option>
-                    <option value="approve_with_edit">Approve with Edit</option>
-                    <option value="reject">Reject</option>
+                    <option value="approve">اعتماد</option>
+                    <option value="approve_with_edit">اعتماد مع تعديل</option>
+                    <option value="reject">رفض</option>
                 </select>
-                <button class="btn" type="submit">Submit Review</button>
+                <button class="btn" type="submit">حفظ القرار</button>
             </form>
         @empty
-            <p>No pending entries.</p>
+            <p>لا توجد إدخالات بانتظار المراجعة.</p>
         @endforelse
     </div>
 
     <div class="card">
-        <h2>Add Father Narrative</h2>
+        <h2>إضافة تعليق الوالد</h2>
         <form method="POST" action="{{ route('admin.narrative') }}">
             @csrf
-            <label>Name ID</label>
+            <label>رقم الاسم</label>
             <input type="number" name="name_id" required>
-            <label>Verse ID (optional)</label>
+            <label>رقم الآية (اختياري)</label>
             <input type="number" name="verse_id">
-            <label>Narrative Text</label>
-            <textarea name="narrative_text" required></textarea>
-            <label>Status</label>
+            <label>نص التعليق</label>
+            <textarea name="narrative_text" rows="5" required></textarea>
+            <label>الحالة</label>
             <select name="status">
-                <option value="draft">draft</option>
-                <option value="final">final</option>
+                <option value="draft">مسودة</option>
+                <option value="final">نهائي</option>
             </select>
-            <button class="btn" type="submit">Add Narrative</button>
+            <button class="btn" type="submit">إضافة التعليق</button>
         </form>
     </div>
 @endsection
-
