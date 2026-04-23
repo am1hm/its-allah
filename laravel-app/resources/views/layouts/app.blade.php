@@ -23,14 +23,14 @@
         <a href="{{ route('home') }}">إنه الله</a>
         <div>
             <a href="{{ route('mushaf') }}">ترتيب المصحف</a> |
-            <a href="{{ route('admin.dashboard') }}">Admin</a> |
+            <a href="{{ route('admin.dashboard') }}">لوحة المراجع</a> |
             @auth
                 <form method="POST" action="{{ route('logout') }}" style="display:inline;">
                     @csrf
-                    <button class="btn" type="submit">Logout</button>
+                    <button class="btn" type="submit">تسجيل الخروج</button>
                 </form>
             @else
-                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('login') }}">تسجيل الدخول</a>
             @endauth
         </div>
     </div>
